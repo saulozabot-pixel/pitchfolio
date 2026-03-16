@@ -19,8 +19,8 @@ export function Sidebar() {
           <Sparkles className="text-white w-6 h-6" />
         </div>
         <div>
-          <h1 className="text-xl font-bold tracking-tight text-white">Elite CV <span className="text-purple-400">AI</span></h1>
-          <p className="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold">Extraordinary Profiles</p>
+          <h1 className="text-xl font-bold tracking-tight text-white">Elite Creator <span className="text-purple-400">AI</span></h1>
+          <p className="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold italic">Extraordinary Assets</p>
         </div>
       </div>
 
@@ -47,7 +47,7 @@ export function Sidebar() {
         <div className="bg-zinc-900/50 p-4 rounded-2xl border border-white/5 text-center">
           <p className="text-xs text-zinc-500 mb-2">Ready to go live?</p>
           <button className="w-full py-2 px-4 rounded-xl gold-gradient text-black font-bold text-sm hover:scale-105 transition-transform duration-300">
-            Publish Resume
+            Go Extraordinary
           </button>
         </div>
       </div>
