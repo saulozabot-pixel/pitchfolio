@@ -39,5 +39,5 @@ Process this data and return the transformed extraordinary version.
     messages,
   });
 
-  return result.toDataStreamResponse();
+  return result.toTextStreamResponse();
 }

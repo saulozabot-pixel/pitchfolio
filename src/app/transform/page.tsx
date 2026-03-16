@@ -121,9 +121,6 @@ export default function TransformPage() {
     </div>
   );
 }
-    </div>
-  );
-}
 
 function PromptSuggestion({ icon: Icon, title, text, onClick }: { icon: any, title: string, text: string, onClick: () => void }) {
   return (
