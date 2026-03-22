@@ -2,11 +2,21 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Briefcase, GraduationCap, Book, PartyPopper, Sparkles, Crown, Palette, CheckCircle } from 'lucide-react';
+import { ArrowRight, Briefcase, GraduationCap, Book, PartyPopper, Sparkles, Crown, Palette, CheckCircle, Heart } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { hasDraft } from '@/lib/pitchStore';
 
 const TEMPLATES = [
+  {
+    id: 'rose',
+    label: 'Rose & Grey',
+    desc: 'Elegância em cinza chumbo e rosa seco — sofisticado e feminino',
+    tip: 'Paleta Rose & Grey com tipografia Montserrat. Ideal para vendas, moda, saúde e atendimento.',
+    icon: Heart,
+    gradient: 'from-[#C4958A] to-[#4F4F4F]',
+    badge: 'bg-rose-50 text-rose-700',
+    tag: 'Carreira',
+  },
   {
     id: 'executive',
     label: 'Executive',
