@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Settings, Camera, FileText, Palette, Bell, Shield, ChevronRight, CheckCircle } from 'lucide-react';
+import { Settings, Camera, FileText, Shield, CheckCircle } from 'lucide-react';
 
 type SettingsState = {
   includePhoto: boolean;
@@ -22,23 +22,37 @@ const defaultSettings: SettingsState = {
 
 const PHOTO_STYLES = [
   { id: 'professional', label: 'LinkedIn Pro', desc: 'Fundo limpo, iluminação de estúdio' },
-  { id: 'executive', label: 'Executivo', desc: 'Terno formal, expressão confiante' },
-  { id: 'creative', label: 'Criativo', desc: 'Moderno, bokeh colorido' },
-  { id: 'casual', label: 'Casual Pro', desc: 'Amigável, luz natural' },
+  { id: 'executive',   label: 'Executivo',    desc: 'Terno formal, expressão confiante' },
+  { id: 'creative',    label: 'Criativo',     desc: 'Moderno, bokeh colorido' },
+  { id: 'casual',      label: 'Casual Pro',   desc: 'Amigável, luz natural' },
 ];
 
 function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) {
   return (
     <button
       onClick={() => onChange(!checked)}
-      className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${checked ? 'bg-purple-600' : 'bg-white/10'}`}
+      className={`relative w-11 h-6 rounded-full transition-colors duration-300 ${checked ? 'pitch-gradient' : 'bg-slate-200'}`}
     >
       <motion.div
-        animate={{ x: checked ? 24 : 2 }}
+        animate={{ x: checked ? 22 : 2 }}
         transition={{ type: 'spring', stiffness: 500, damping: 30 }}
         className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-md"
       />
     </button>
+  );
+}
+
+function SectionHeader({ icon: Icon, iconClass, title, subtitle }: { icon: React.ElementType; iconClass: string; title: string; subtitle: string }) {
+  return (
+    <div className="flex items-center gap-3 p-5 border-b border-slate-100">
+      <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${iconClass}`}>
+        <Icon className="w-4 h-4" />
+      </div>
+      <div>
+        <p className="font-bold text-slate-900 text-sm">{title}</p>
+        <p className="text-xs text-slate-400">{subtitle}</p>
+      </div>
+    </div>
   );
 }
 
@@ -69,57 +83,41 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="p-8 max-w-3xl mx-auto space-y-8">
+    <div className="p-6 max-w-3xl mx-auto space-y-6">
 
       {/* Header */}
-      <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }}>
+      <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }}>
         <div className="flex items-center gap-3 mb-1">
-          <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-white/10 flex items-center justify-center">
-            <Settings className="w-5 h-5 text-zinc-300" />
+          <div className="w-9 h-9 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center">
+            <Settings className="w-4 h-4 text-slate-500" />
           </div>
-          <h1 className="text-2xl font-black text-white">Configurações</h1>
+          <h1 className="text-2xl font-black text-slate-900 font-outfit">Configurações</h1>
         </div>
-        <p className="text-zinc-500 ml-[52px] text-sm">Personalize como seu currículo é gerado e apresentado.</p>
+        <p className="text-slate-400 ml-[52px] text-sm">Personalize como seu portfólio é gerado e apresentado.</p>
       </motion.div>
 
-      {/* SECTION: Foto Profissional */}
-      <motion.section
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="rounded-2xl bg-zinc-900/50 border border-white/5 overflow-hidden"
-      >
-        <div className="flex items-center gap-3 p-5 border-b border-white/5">
-          <div className="w-8 h-8 rounded-lg bg-amber-400/10 flex items-center justify-center">
-            <Camera className="w-4 h-4 text-amber-400" />
-          </div>
-          <div>
-            <p className="font-bold text-white text-sm">Foto Profissional</p>
-            <p className="text-xs text-zinc-500">Configurações de foto no currículo</p>
-          </div>
-        </div>
+      {/* Foto */}
+      <motion.section initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+        className="rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm">
+        <SectionHeader icon={Camera} iconClass="bg-amber-50 text-amber-500" title="Foto Profissional" subtitle="Configurações de foto no currículo" />
 
-        {/* Toggle principal */}
-        <div className="p-5 flex items-center justify-between border-b border-white/5">
+        <div className="p-5 flex items-center justify-between border-b border-slate-100">
           <div>
-            <p className="font-semibold text-white text-sm">Incluir foto no currículo</p>
-            <p className="text-xs text-zinc-500 mt-0.5">
-              {settings.includePhoto
-                ? 'Sua foto profissional aparece no topo do currículo'
-                : 'Currículo sem foto — foco total no conteúdo'}
+            <p className="font-semibold text-slate-800 text-sm">Incluir foto no currículo</p>
+            <p className="text-xs text-slate-400 mt-0.5">
+              {settings.includePhoto ? 'Sua foto aparece no topo do currículo' : 'Sem foto — foco total no conteúdo'}
             </p>
           </div>
           <Toggle checked={settings.includePhoto} onChange={v => update('includePhoto', v)} />
         </div>
 
-        {/* Estilo da foto — só aparece se includePhoto = true */}
         <motion.div
           animate={{ height: settings.includePhoto ? 'auto' : 0, opacity: settings.includePhoto ? 1 : 0 }}
           transition={{ duration: 0.25 }}
           className="overflow-hidden"
         >
           <div className="p-5">
-            <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-3">Estilo padrão da foto</p>
+            <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-3">Estilo padrão da foto</p>
             <div className="grid grid-cols-2 gap-2">
               {PHOTO_STYLES.map(s => (
                 <button
@@ -127,52 +125,40 @@ export default function SettingsPage() {
                   onClick={() => update('photoStyle', s.id)}
                   className={`p-3 rounded-xl border text-left transition-all ${
                     settings.photoStyle === s.id
-                      ? 'border-purple-500 bg-purple-500/10'
-                      : 'border-white/8 bg-white/3 hover:border-white/15'
+                      ? 'border-cyan-400 bg-cyan-50'
+                      : 'border-slate-200 hover:border-slate-300 bg-white'
                   }`}
                 >
-                  <p className="font-bold text-sm text-white">{s.label}</p>
-                  <p className="text-xs text-zinc-500 mt-0.5">{s.desc}</p>
+                  <p className="font-bold text-sm text-slate-900">{s.label}</p>
+                  <p className="text-xs text-slate-400 mt-0.5">{s.desc}</p>
                   {settings.photoStyle === s.id && (
-                    <CheckCircle className="w-3.5 h-3.5 text-purple-400 mt-1.5" />
+                    <CheckCircle className="w-3.5 h-3.5 text-cyan-500 mt-1.5" />
                   )}
                 </button>
               ))}
             </div>
-            <p className="text-xs text-zinc-600 mt-3">
-              Você pode alterar o estilo individualmente ao gerar cada foto em{' '}
-              <a href="/photo" className="text-amber-400 hover:underline">Foto Profissional</a>.
+            <p className="text-xs text-slate-400 mt-3">
+              Você pode alterar o estilo individualmente em{' '}
+              <a href="/photo" className="text-cyan-600 hover:underline">Foto Profissional</a>.
             </p>
           </div>
         </motion.div>
       </motion.section>
 
-      {/* SECTION: Currículo */}
-      <motion.section
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15 }}
-        className="rounded-2xl bg-zinc-900/50 border border-white/5 overflow-hidden"
-      >
-        <div className="flex items-center gap-3 p-5 border-b border-white/5">
-          <div className="w-8 h-8 rounded-lg bg-blue-400/10 flex items-center justify-center">
-            <FileText className="w-4 h-4 text-blue-400" />
-          </div>
-          <div>
-            <p className="font-bold text-white text-sm">Currículo</p>
-            <p className="text-xs text-zinc-500">Idioma e formato padrão</p>
-          </div>
-        </div>
+      {/* Currículo */}
+      <motion.section initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+        className="rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm">
+        <SectionHeader icon={FileText} iconClass="bg-blue-50 text-blue-500" title="Portfólio" subtitle="Idioma e formato padrão" />
 
         <div className="p-5 flex items-center justify-between">
           <div>
-            <p className="font-semibold text-white text-sm">Idioma do conteúdo</p>
-            <p className="text-xs text-zinc-500 mt-0.5">Idioma gerado pela IA</p>
+            <p className="font-semibold text-slate-800 text-sm">Idioma do conteúdo</p>
+            <p className="text-xs text-slate-400 mt-0.5">Idioma gerado pela IA</p>
           </div>
           <select
             value={settings.language}
             onChange={e => update('language', e.target.value)}
-            className="bg-zinc-800 border border-white/10 text-white text-sm rounded-xl px-3 py-2 outline-none focus:border-purple-500 transition-colors"
+            className="bg-white border border-slate-200 text-slate-800 text-sm rounded-xl px-3 py-2 outline-none focus:border-cyan-400 transition-colors"
           >
             <option value="pt-BR">Português (BR)</option>
             <option value="en-US">English (US)</option>
@@ -181,62 +167,42 @@ export default function SettingsPage() {
         </div>
       </motion.section>
 
-      {/* SECTION: Privacidade */}
-      <motion.section
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="rounded-2xl bg-zinc-900/50 border border-white/5 overflow-hidden"
-      >
-        <div className="flex items-center gap-3 p-5 border-b border-white/5">
-          <div className="w-8 h-8 rounded-lg bg-green-400/10 flex items-center justify-center">
-            <Shield className="w-4 h-4 text-green-400" />
-          </div>
-          <div>
-            <p className="font-bold text-white text-sm">Privacidade</p>
-            <p className="text-xs text-zinc-500">Visibilidade do seu currículo</p>
-          </div>
-        </div>
+      {/* Privacidade */}
+      <motion.section initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+        className="rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm">
+        <SectionHeader icon={Shield} iconClass="bg-green-50 text-green-500" title="Privacidade" subtitle="Visibilidade do seu portfólio" />
 
-        <div className="p-5 flex items-center justify-between border-b border-white/5">
+        <div className="p-5 flex items-center justify-between border-b border-slate-100">
           <div>
-            <p className="font-semibold text-white text-sm">Perfil público</p>
-            <p className="text-xs text-zinc-500 mt-0.5">Qualquer pessoa com o link pode visualizar</p>
+            <p className="font-semibold text-slate-800 text-sm">Perfil público</p>
+            <p className="text-xs text-slate-400 mt-0.5">Qualquer pessoa com o link pode visualizar</p>
           </div>
           <Toggle checked={settings.publicProfile} onChange={v => update('publicProfile', v)} />
         </div>
 
         <div className="p-5 flex items-center justify-between">
           <div>
-            <p className="font-semibold text-white text-sm">Notificações por e-mail</p>
-            <p className="text-xs text-zinc-500 mt-0.5">Alertas quando alguém visualiza seu currículo</p>
+            <p className="font-semibold text-slate-800 text-sm">Notificações por e-mail</p>
+            <p className="text-xs text-slate-400 mt-0.5">Alertas quando alguém visualiza seu portfólio</p>
           </div>
           <Toggle checked={settings.emailNotifications} onChange={v => update('emailNotifications', v)} />
         </div>
       </motion.section>
 
-      {/* Save button */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="flex items-center justify-between"
-      >
-        <p className="text-xs text-zinc-600">As preferências são salvas automaticamente no seu navegador.</p>
+      {/* Save */}
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
+        className="flex items-center justify-between">
+        <p className="text-xs text-slate-400">Preferências salvas automaticamente no seu navegador.</p>
         <motion.button
           onClick={save}
           whileTap={{ scale: 0.97 }}
-          className={`px-6 py-3 rounded-2xl font-bold text-sm transition-all flex items-center gap-2 ${
+          className={`px-6 py-3 rounded-xl font-bold text-sm transition-all flex items-center gap-2 ${
             saved
-              ? 'bg-green-500/20 border border-green-500/30 text-green-400'
-              : 'bg-purple-600 hover:bg-purple-700 text-white'
+              ? 'bg-green-50 border border-green-200 text-green-600'
+              : 'pitch-gradient text-white shadow-md shadow-cyan-200 hover:opacity-90'
           }`}
         >
-          {saved ? (
-            <><CheckCircle className="w-4 h-4" /> Salvo!</>
-          ) : (
-            'Salvar preferências'
-          )}
+          {saved ? <><CheckCircle className="w-4 h-4" /> Salvo!</> : 'Salvar preferências'}
         </motion.button>
       </motion.div>
     </div>

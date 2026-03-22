@@ -7,19 +7,19 @@ export function AuthHeader() {
   const { isSignedIn } = useAuth();
 
   return (
-    <div className="absolute top-6 right-8 z-50">
+    <div className="absolute top-5 right-7 z-50">
       {isSignedIn ? (
         <UserButton
           appearance={{
             elements: {
-              userButtonAvatarBox: "w-10 h-10 border-2 border-purple-500/50"
+              userButtonAvatarBox: "w-9 h-9 border-2 border-cyan-400/60"
             }
           }}
         />
       ) : (
         <SignInButton mode="modal">
-          <button className="px-6 py-2 rounded-xl bg-purple-600 text-white font-bold text-sm hover:bg-purple-700 transition-colors">
-            Elite Sign In
+          <button className="px-5 py-2 rounded-xl pitch-gradient text-white font-bold text-sm shadow-md shadow-cyan-200 hover:opacity-90 transition-all">
+            Entrar
           </button>
         </SignInButton>
       )}

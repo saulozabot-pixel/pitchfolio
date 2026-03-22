@@ -9,8 +9,8 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "Elite Creator AI | Extraordinary Asset Engine",
-  description: "Transform raw data into extraordinary resumes, academic works, book covers, and premium invitations.",
+  title: "PitchFólio | Transforme seu Portfólio em Experiência",
+  description: "IA que transforma seus dados profissionais em ativos extraordinários — CVs, pitches em vídeo, portfólios e muito mais.",
 };
 
 export default function RootLayout({
@@ -20,17 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" className="dark">
-        <body className={`${inter.variable} ${outfit.variable} font-inter overflow-hidden bg-[#09090b]`}>
-          <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none opacity-20">
-            <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-600 rounded-full blur-[140px]" />
-            <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-600 rounded-full blur-[140px]" />
-            <div className="absolute top-[30%] right-[10%] w-[30%] h-[30%] bg-pink-600 rounded-full blur-[120px]" />
-          </div>
-
-          <div className="flex">
+      <html lang="pt-BR">
+        <body className={`${inter.variable} ${outfit.variable} font-inter bg-slate-50`}>
+          <div className="flex h-screen overflow-hidden">
             <Sidebar />
-            <main className="flex-1 h-screen overflow-y-auto relative">
+            <main className="flex-1 overflow-y-auto relative">
               <AuthHeader />
               {children}
             </main>
