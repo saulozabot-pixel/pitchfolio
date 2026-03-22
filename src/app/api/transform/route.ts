@@ -1,43 +1,56 @@
 import { google } from '@ai-sdk/google';
-import { streamText } from 'ai';
+import { generateText } from 'ai';
 
-// Mark the route as dynamic
 export const dynamic = 'force-dynamic';
 
+function extractText(msg: { content?: string; parts?: { type: string; text?: string }[] }): string {
+  if (typeof msg.content === 'string') return msg.content;
+  return (msg.parts ?? []).filter(p => p.type === 'text').map(p => p.text ?? '').join('');
+}
+
 export async function POST(req: Request) {
-  const { messages, category = 'detect' } = await req.json();
+  const { messages } = await req.json();
+  const lastText = extractText(messages[messages.length - 1]);
 
-  const systemPrompt = `
-You are the "Elite Creator AI", a world-class engine for transforming basic data into extraordinary digital assets.
+  const systemPrompt = `Você é o "Elite Creator AI", uma engine de classe mundial para transformar dados básicos em ativos digitais extraordinários.
 
-CATEGORIES YOU SUPPORT:
-1. RESUME: Professional landing pages. Focus on IMPACT, METRICS, and BRANDING.
-2. ACADEMIC: Thesis/Paper presentations. Focus on AUTHORITY, STRUCTURE, and CLARITY.
-3. BOOK: Publishing covers. Focus on EPIC VIBE, SYNOPSIS, and VISUAL IMPACT.
-4. EVENT: Premium invitations. Focus on EXPERIENCE, EXCLUSIVITY, and DETAIL.
+CATEGORIAS:
+1. CURRÍCULO: Foco em IMPACTO, MÉTRICAS e BRANDING. Reescreva experiências com verbos de ação e resultados quantificados.
+2. ACADÊMICO: Foco em AUTORIDADE e CLAREZA.
+3. LIVRO: Foco em VIBE ÉPICO e SINOPSE impactante.
+4. EVENTO: Foco em EXPERIÊNCIA e EXCLUSIVIDADE.
 
-YOUR TASKS:
-1. INTENT DETECTION: If category is 'detect', analyze the input and determine which category it belongs to.
-2. EXTRAORDINARY TRANSFORMATION: Rewrite the content to be high-performance, professional, and elite.
-3. STRUCTURED OUTPUT: Return the data in a clear, structured way that can populate a UI.
+REGRAS:
+- Use verbos de ação fortes.
+- Quantifique conquistas sempre que possível.
+- Tom sofisticado e autoritativo.
+- Output estruturado, claro, pronto para exibição.
+- Se faltar informação, pergunte ao usuário o que está faltando antes de gerar.
 
-STYLE RULES:
-- Use strong action verbs.
-- Quantify achievements.
-- Maintain a sophisticated, authoritative tone.
-- Ensure the output feels "Extraordinary".
+DADO DO USUÁRIO:
+${lastText}
 
-USER REQUEST:
-${messages[messages.length - 1].content}
+Transforme e retorne a versão extraordinária.`;
 
-Process this data and return the transformed extraordinary version.
-`;
+  try {
+    const { text } = await generateText({
+      model: google('gemini-2.0-flash'),
+      system: systemPrompt,
+      messages,
+    });
 
-  const result = await streamText({
-    model: google('gemini-1.5-pro'),
-    system: systemPrompt,
-    messages,
-  });
-
-  return result.toTextStreamResponse();
+    return new Response(text, {
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+    });
+  } catch (err: unknown) {
+    console.error('[transform] error:', err);
+    const msg = err instanceof Error ? err.message : String(err);
+    const isRate = msg.includes('429') || msg.includes('quota') || msg.includes('RESOURCE_EXHAUSTED');
+    return new Response(
+      isRate
+        ? '⚠️ Limite de requisições atingido. Aguarde 15 segundos e tente novamente.'
+        : '⚠️ Erro ao processar. Tente novamente.',
+      { status: 200, headers: { 'Content-Type': 'text/plain; charset=utf-8' } }
+    );
+  }
 }

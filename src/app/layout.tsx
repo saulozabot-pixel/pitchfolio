@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
-import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { AuthHeader } from "@/components/AuthHeader";
+import { ClerkProvider } from '@clerk/nextjs';
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -29,25 +30,8 @@ export default function RootLayout({
 
           <div className="flex">
             <Sidebar />
-            <main className="flex-1 h-screen overflow-y-auto">
-              <div className="absolute top-6 right-8 z-50">
-                <SignedOut>
-                  <SignInButton mode="modal">
-                    <button className="px-6 py-2 rounded-xl bg-purple-600 text-white font-bold text-sm hover:bg-purple-700 transition-colors">
-                      Elite Sign In
-                    </button>
-                  </SignInButton>
-                </SignedOut>
-                <SignedIn>
-                  <UserButton 
-                    appearance={{
-                      elements: {
-                        userButtonAvatarBox: "w-10 h-10 border-2 border-purple-500/50"
-                      }
-                    }} 
-                  />
-                </SignedIn>
-              </div>
+            <main className="flex-1 h-screen overflow-y-auto relative">
+              <AuthHeader />
               {children}
             </main>
           </div>

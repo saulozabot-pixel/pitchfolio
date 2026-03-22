@@ -1,3 +1,5 @@
+'use client';
+
 import { SpectrumTemplate } from "@/components/templates/SpectrumTemplate";
 import { Instagram, Twitter, Music, Camera, Mail } from 'lucide-react';
 
