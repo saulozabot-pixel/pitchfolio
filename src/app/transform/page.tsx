@@ -259,7 +259,7 @@ export default function TransformPage() {
       </div>
 
       {/* Input fixo */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-3xl px-4 z-50">
+      <div className="fixed bottom-[calc(4rem+env(safe-area-inset-bottom)+0.5rem)] md:bottom-6 left-1/2 -translate-x-1/2 w-full max-w-3xl px-4 z-40">
         <div className="bg-white rounded-2xl p-2.5 border border-slate-200 shadow-xl shadow-slate-200/60">
           {/* Preview de imagem colada */}
           {pendingImage && (
