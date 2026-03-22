@@ -26,13 +26,13 @@ export function Sidebar() {
   return (
     <aside className="w-64 h-screen bg-white border-r border-slate-200 p-5 flex flex-col hidden md:flex shrink-0">
       {/* Logo */}
-      <Link href="/" className="flex items-center mb-10 px-1">
-        <div className="relative h-32 w-full">
+      <Link href="/" className="flex justify-center mb-8">
+        <div className="relative w-48 h-28">
           <Image
             src="/pitchfolio-logo.png"
             alt="PitchFólio"
             fill
-            className="object-contain object-left"
+            className="object-contain object-center"
             priority
           />
         </div>
