@@ -144,8 +144,8 @@ export default function CardPage() {
       <div className="p-4 md:p-6 max-w-5xl mx-auto space-y-6">
         <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }}>
           <div className="flex items-center gap-3 mb-1">
-            <div className="w-9 h-9 rounded-xl pitch-gradient flex items-center justify-center shadow-md shadow-cyan-200">
-              <QrCode className="w-4 h-4 text-white" />
+            <div className="w-9 h-9 rounded-xl overflow-hidden shadow-md shadow-cyan-200">
+              <img src="/pitchfolio-icon.png" alt="PitchFólio" className="w-full h-full object-contain" />
             </div>
             <h1 className="text-2xl font-black text-slate-900 font-outfit">Cartão Digital</h1>
           </div>

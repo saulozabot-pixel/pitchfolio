@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Share2, Link2, Linkedin, Mail, QrCode, BarChart2, Users, Eye, ArrowUpRight, Copy, CheckCircle, Sparkles, Loader2, XCircle, Zap, Download } from 'lucide-react';
+import { Share2, Link2, ExternalLink, Mail, QrCode, BarChart2, Users, Eye, ArrowUpRight, Copy, CheckCircle, Sparkles, Loader2, XCircle, Zap, Download } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
@@ -81,7 +81,7 @@ export default function GrowthPage() {
   }
 
   const CHANNELS = [
-    { label: 'LinkedIn', desc: 'Aumente sua visibilidade profissional.', icon: Linkedin, color: 'bg-blue-600', action: shareLinkedIn },
+    { label: 'LinkedIn', desc: 'Aumente sua visibilidade profissional.', icon: ExternalLink, color: 'bg-blue-600', action: shareLinkedIn },
     { label: 'WhatsApp', desc: 'Envie direto para recrutadores e contatos.', icon: Share2, color: 'bg-green-500', action: shareWhatsApp },
     { label: 'E-mail',   desc: 'Inclua no seu e-mail de candidatura.', icon: Mail, color: 'bg-slate-700', action: shareEmail },
   ];
@@ -91,8 +91,8 @@ export default function GrowthPage() {
 
       <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }}>
         <div className="flex items-center gap-3 mb-1">
-          <div className="w-9 h-9 rounded-xl pitch-gradient flex items-center justify-center shadow-md shadow-cyan-200">
-            <Share2 className="w-4 h-4 text-white" />
+          <div className="w-9 h-9 rounded-xl overflow-hidden shadow-md shadow-cyan-200">
+            <img src="/pitchfolio-icon.png" alt="PitchFólio" className="w-full h-full object-contain" />
           </div>
           <h1 className="text-2xl font-black text-slate-900 font-outfit">Viral Growth</h1>
         </div>
