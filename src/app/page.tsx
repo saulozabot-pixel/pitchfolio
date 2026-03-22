@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Sparkles, FileText, Video, Share2, ArrowRight, Zap } from 'lucide-react';
+import { FileText, Video, Share2, ArrowRight, Zap } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -21,7 +21,8 @@ export default function Home() {
 
           <h1 className="text-5xl md:text-6xl font-black font-outfit text-slate-900 leading-[1.05] tracking-tight">
             Pare de mandar<br />
-            <span className="pitch-gradient-text">currículo.</span>
+            <span className="pitch-gradient-text">currículo</span>
+            <span className="text-slate-400 text-xl md:text-2xl font-medium ml-2 tracking-normal">em pdf, word ou impresso...</span>
           </h1>
 
           <p className="text-slate-500 text-lg leading-relaxed max-w-xl">
