@@ -2,7 +2,9 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Briefcase, GraduationCap, Book, PartyPopper, Sparkles, Crown, Palette } from 'lucide-react';
+import { ArrowRight, Briefcase, GraduationCap, Book, PartyPopper, Sparkles, Crown, Palette, CheckCircle } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { hasDraft } from '@/lib/pitchStore';
 
 const TEMPLATES = [
   {
@@ -78,6 +80,9 @@ const TEMPLATES = [
 ];
 
 export default function TemplatesPage() {
+  const [draft, setDraft] = useState(false);
+  useEffect(() => { setDraft(hasDraft()); }, []);
+
   return (
     <div className="p-6 max-w-6xl mx-auto space-y-8">
 
@@ -91,6 +96,18 @@ export default function TemplatesPage() {
         </div>
         <p className="text-slate-500 ml-[52px] text-sm">Escolha o template ideal e veja como seu conteúdo vai ficar.</p>
       </motion.div>
+
+      {/* Banner de conteúdo pronto */}
+      {draft && (
+        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-4 p-4 rounded-2xl bg-cyan-50 border border-cyan-200 shadow-sm">
+          <CheckCircle className="w-5 h-5 text-cyan-500 shrink-0" />
+          <div className="flex-1">
+            <p className="text-sm font-bold text-cyan-900">Conteúdo do Transformer pronto</p>
+            <p className="text-xs text-cyan-700">Escolha um template abaixo — seus dados serão aplicados automaticamente.</p>
+          </div>
+        </motion.div>
+      )}
 
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

@@ -1,8 +1,10 @@
 'use client';
 
-import { Sparkles, Send, User, Briefcase, GraduationCap, Trophy, Paperclip, Image as ImageIcon, X } from 'lucide-react';
+import { Sparkles, Send, User, Briefcase, GraduationCap, Trophy, Paperclip, Image as ImageIcon, X, ArrowRight, Loader2 } from 'lucide-react';
 import { useState, useRef, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { saveDraft, type CVData } from '@/lib/pitchStore';
 
 type PendingImage = { dataUrl: string; mimeType: string };
 type Message = {
@@ -18,8 +20,28 @@ export default function TransformPage() {
   const [fileName, setFileName] = useState<string | null>(null);
   const [pendingFile, setPendingFile] = useState<File | null>(null);
   const [pendingImage, setPendingImage] = useState<PendingImage | null>(null);
+  const [applying, setApplying] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const imgRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+
+  async function applyToTemplate() {
+    const lastAI = [...messages].reverse().find(m => m.role === 'assistant' && m.text.length > 50);
+    if (!lastAI) return;
+    setApplying(true);
+    try {
+      const res = await fetch('/api/parse-cv', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: lastAI.text }),
+      });
+      const data: CVData = await res.json();
+      saveDraft(data);
+      router.push('/templates');
+    } catch {
+      setApplying(false);
+    }
+  }
 
   async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -206,6 +228,21 @@ export default function TransformPage() {
             </div>
           </div>
         ))}
+
+        {/* Botão Aplicar ao Template — aparece após IA responder */}
+        {!streaming && messages.length > 0 && messages[messages.length - 1]?.role === 'assistant' && messages[messages.length - 1].text.length > 50 && (
+          <div className="flex justify-center pt-2 pb-4">
+            <button
+              type="button"
+              onClick={applyToTemplate}
+              disabled={applying}
+              className="flex items-center gap-2 px-6 py-3 rounded-xl pitch-gradient text-white font-bold text-sm shadow-lg shadow-cyan-200 hover:opacity-90 hover:scale-105 active:scale-95 transition-all disabled:opacity-60"
+            >
+              {applying ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
+              {applying ? 'Preparando template…' : 'Aplicar ao Template'}
+            </button>
+          </div>
+        )}
 
         {streaming && messages[messages.length - 1]?.role !== 'assistant' && (
           <div className="flex gap-4 p-6 rounded-2xl bg-cyan-50/60 border border-cyan-100 mr-8 animate-pulse">
