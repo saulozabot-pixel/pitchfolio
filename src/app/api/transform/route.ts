@@ -3,26 +3,45 @@ import { generateText } from 'ai';
 
 export const dynamic = 'force-dynamic';
 
+type MsgIn = {
+  role: 'user' | 'assistant';
+  content: string;
+  image?: { dataUrl: string; mimeType: string };
+};
+
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  const { messages }: { messages: MsgIn[] } = await req.json();
 
-  const systemPrompt = `Você é o PitchFólio AI, uma engine de classe mundial para transformar dados brutos em ativos digitais extraordinários.
+  const systemPrompt = `Você é o PitchFólio AI, uma engine para reescrever dados profissionais reais.
 
-COMPORTAMENTO:
-- Quando o usuário enviar dados (currículo, bio, experiências, trabalho acadêmico, ideia de livro, evento), transforme IMEDIATAMENTE em output extraordinário.
-- Não peça confirmação de categoria — detecte automaticamente pelo conteúdo.
-- Não invente dados. Use APENAS o que o usuário forneceu.
-- Se o conteúdo for claramente um currículo/CV, reescreva com verbos de ação fortes e resultados quantificados.
-- Se o conteúdo for acadêmico, priorize autoridade e clareza.
-- Se for livro ou evento, foque em impacto e exclusividade.
-- Tom sofisticado, direto, pronto para publicação.
-- Se o usuário enviar texto vago demais (menos de 30 palavras sem contexto real), peça mais detalhes de forma objetiva.`;
+REGRAS ABSOLUTAS:
+1. NUNCA invente nomes, cargos, empresas, datas, estilos, paletas de cores ou branding. ZERO invenção.
+2. Se o usuário não enviou dados reais (currículo, experiências, bio, texto acadêmico, ideia de livro), responda APENAS: "Por favor, cole aqui o conteúdo real que deseja transformar — seu currículo, bio ou dados profissionais."
+3. Só transforme quando houver conteúdo real e substancial fornecido pelo usuário.
+4. Se houver conteúdo real: reescreva com verbos de ação fortes, resultados quantificados, tom sofisticado. Use APENAS os dados fornecidos.
+5. Se receber imagem: leia todo o texto visível na imagem e transforme com base nele.`;
+
+  // Converte mensagens para formato multimodal do AI SDK
+  const sdkMessages = messages.map(m => {
+    if (m.image) {
+      const base64 = m.image.dataUrl.replace(/^data:[^;]+;base64,/, '');
+      return {
+        role: m.role as 'user' | 'assistant',
+        content: [
+          { type: 'image' as const, image: base64, mimeType: m.image.mimeType as 'image/png' | 'image/jpeg' | 'image/webp' },
+          ...(m.content ? [{ type: 'text' as const, text: m.content }] : []),
+        ],
+      };
+    }
+    return { role: m.role as 'user' | 'assistant', content: m.content };
+  });
 
   try {
     const { text } = await generateText({
       model: google('gemini-3-flash-preview'),
       system: systemPrompt,
-      messages,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      messages: sdkMessages as any,
     });
 
     return new Response(text, {
