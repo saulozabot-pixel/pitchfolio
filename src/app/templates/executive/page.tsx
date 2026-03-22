@@ -5,47 +5,54 @@ import { ExecutiveTemplate } from "@/components/templates/ExecutiveTemplate";
 import { loadDraft } from '@/lib/pitchStore';
 
 const mockData = {
-  fullName: "Saulo Zabot Luciano",
-  role: "Diretor de Operações & Especialista em Automação IA",
-  description: "Estrategista focado em orquestrar ecossistemas tecnológicos para escala exponencial. Especialista em transformar automações complexas em ativos lucrativos de alta performance, unindo inteligência artificial a processos operacionais de elite.",
-  email: "saulo.zabot@elite.ai",
-  phone: "+55 (47) 98818-2649",
-  location: "Gaspar, SC - Brasil",
+  fullName: "Ricardo Menezes Cavalcanti",
+  role: "Chief Financial Officer & Estrategista de Crescimento",
+  description: "Executivo com 18 anos de experiência em finanças corporativas, fusões e aquisições e expansão internacional. Especialista em transformar estruturas financeiras complexas em vantagens competitivas sustentáveis para empresas de médio e grande porte.",
+  email: "r.cavalcanti@execmail.com.br",
+  phone: "+55 (11) 99234-5678",
+  location: "São Paulo, SP - Brasil",
   skills: [
-    { name: "Orquestração de Agentes IA", level: 98 },
-    { name: "Full Stack Architecture", level: 92 },
-    { name: "Gestão de Operações Escalonáveis", level: 95 },
-    { name: "Automação de Processos Críticos", level: 99 },
-    { name: "Python & Machine Learning Workflow", level: 88 }
+    { name: "Finanças Corporativas & M&A", level: 97 },
+    { name: "Planejamento Estratégico", level: 94 },
+    { name: "Gestão de Riscos", level: 91 },
+    { name: "Reestruturação Organizacional", level: 88 },
+    { name: "Relacionamento com Investidores", level: 93 }
   ],
   experience: [
     {
-      company: "Elite CV AI Engine",
-      position: "Founder & Lead Architect",
-      period: "2024 - Presente",
+      company: "Grupo Meridian Brasil",
+      position: "Chief Financial Officer",
+      period: "2019 - Presente",
       achievements: [
-        "Desenvolveu o primeiro 'Resume Transformer' baseado em Gemini 1.5 Pro do mercado.",
-        "Implementou arquitetura multi-tenant para hospedagem viral de perfis interativos.",
-        "Acelerou o tempo de criação de perfis premium em 90% através de LLMs otimizados."
+        "Liderou processo de IPO avaliado em R$ 2,4 bilhões na B3.",
+        "Reduziu o custo de capital em 22% através de refinanciamento estratégico da dívida.",
+        "Estruturou 4 aquisições em mercados emergentes da América Latina."
       ]
     },
     {
-      company: "RC Empreendimentos Hoteleiros",
-      position: "Gerente Operacional",
-      period: "2018 - 2019",
+      company: "Banco Altus S.A.",
+      position: "Diretor de Finanças Corporativas",
+      period: "2014 - 2019",
       achievements: [
-        "Gerenciou equipes multidisciplinares com foco em eficiência e redução de custos.",
-        "Implementou sistemas de controle rigorosos para manutenção e suprimentos.",
-        "Otimizou processos operacionais elevando a nota de satisfação dos clientes."
+        "Gerenciou carteira de crédito corporativo superior a R$ 800 milhões.",
+        "Implementou modelo de avaliação de risco que reduziu inadimplência em 35%.",
+        "Coordenou integração pós-fusão com banco regional do Nordeste."
+      ]
+    },
+    {
+      company: "Deloitte Brasil",
+      position: "Senior Manager — Advisory",
+      period: "2008 - 2014",
+      achievements: [
+        "Conduziu due diligence em mais de 30 transações de M&A.",
+        "Desenvolveu modelos de valuation para clientes dos setores de energia e varejo.",
+        "Liderou equipe de 12 consultores em projetos de transformação financeira."
       ]
     }
   ],
   education: [
-    {
-      institution: "ESTÁCIO/UNIP",
-      degree: "Engenharia Mecânica",
-      period: "2014 - 2018"
-    }
+    { institution: "FGV EAESP", degree: "MBA Executivo em Finanças", period: "2012 - 2014" },
+    { institution: "Universidade de São Paulo (USP)", degree: "Ciências Contábeis", period: "2001 - 2005" }
   ]
 };
 

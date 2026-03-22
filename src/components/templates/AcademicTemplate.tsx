@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { BookOpen, GraduationCap, Users, Bookmark, FileText, Search, Sparkles, ChevronRight } from 'lucide-react';
+import { BookOpen, Bookmark, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AcademicWork } from '@/lib/types/academic';
 
@@ -126,14 +127,11 @@ export function AcademicTemplate({ data }: AcademicTemplateProps) {
 
       {/* Premium Academic Footer */}
       <footer className="py-32 text-center border-t border-zinc-100">
-         <div className="w-12 h-12 bg-zinc-900 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-2xl rotate-45">
-            <GraduationCap className="text-white w-6 h-6 -rotate-45" />
+         <div className="flex items-center justify-center mb-6 opacity-40">
+            <Image src="/pitchfolio-logo.png" alt="PitchFólio" width={120} height={28} />
          </div>
-         <p className="text-zinc-400 font-black uppercase tracking-[0.5em] text-[10px] mb-2">
-            Elite Creator AI &bull; Academic Division
-         </p>
          <p className="text-zinc-300 text-[9px] uppercase tracking-widest font-bold">
-            Extraordinary Knowledge Presentation &bull; 2026
+            Academic Division &bull; Extraordinary Knowledge Presentation &bull; 2026
          </p>
       </footer>
     </div>

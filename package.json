@@ -13,6 +13,7 @@
     "@ai-sdk/react": "^3.0.136",
     "@clerk/nextjs": "^7.0.4",
     "@fal-ai/client": "^1.9.4",
+    "@supabase/supabase-js": "^2.99.3",
     "ai": "^6.0.116",
     "clsx": "^2.1.1",
     "framer-motion": "^12.37.0",

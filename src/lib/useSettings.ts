@@ -23,7 +23,7 @@ export function useSettings() {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem('elite_cv_settings');
+      const stored = localStorage.getItem('pitchfolio_settings');
       if (stored) setSettings({ ...DEFAULTS, ...JSON.parse(stored) });
     } catch {}
   }, []);
@@ -31,7 +31,7 @@ export function useSettings() {
   function updateSetting<K extends keyof CVSettings>(key: K, value: CVSettings[K]) {
     setSettings(prev => {
       const next = { ...prev, [key]: value };
-      try { localStorage.setItem('elite_cv_settings', JSON.stringify(next)); } catch {}
+      try { localStorage.setItem('pitchfolio_settings', JSON.stringify(next)); } catch {}
       return next;
     });
   }
@@ -43,7 +43,7 @@ export function useSettings() {
 export function getSettings(): CVSettings {
   if (typeof window === 'undefined') return DEFAULTS;
   try {
-    const stored = localStorage.getItem('elite_cv_settings');
+    const stored = localStorage.getItem('pitchfolio_settings');
     return stored ? { ...DEFAULTS, ...JSON.parse(stored) } : DEFAULTS;
   } catch {
     return DEFAULTS;

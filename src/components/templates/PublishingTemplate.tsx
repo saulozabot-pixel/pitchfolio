@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Book, Sparkles, Star, Feather, Share2, Layers } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -64,7 +65,7 @@ export function PublishingTemplate({ data }: PublishingTemplateProps) {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] uppercase font-black tracking-widest">
               <Feather className="w-3 h-3 text-[var(--accent)]" />
-              Elite Publishing Vertical
+              PitchFólio Publishing
             </div>
             <h1 className="text-7xl font-black leading-none tracking-tighter">
               Transform Your <br />
@@ -102,8 +103,11 @@ export function PublishingTemplate({ data }: PublishingTemplateProps) {
 
       {/* Publishing Footer */}
       <footer className="py-20 text-center relative z-10 border-t border-white/5">
+         <div className="flex items-center justify-center mb-4 opacity-40">
+            <Image src="/pitchfolio-logo.png" alt="PitchFólio" width={120} height={28} />
+         </div>
          <p className="text-zinc-700 text-[10px] font-black uppercase tracking-[0.6em]">
-            The Bestseller Logic &bull; Elite Creator AI &bull; 2026
+            The Bestseller Logic &bull; 2026
          </p>
       </footer>
     </div>

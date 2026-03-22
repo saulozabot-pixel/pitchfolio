@@ -64,7 +64,7 @@ export default function PhotoPage() {
     if (!result) return;
     const a = document.createElement('a');
     a.href = result;
-    a.download = `elite-cv-foto-${style}.jpg`;
+    a.download = `pitchfolio-foto-${style}.jpg`;
     a.click();
   }
 
@@ -222,7 +222,7 @@ export default function PhotoPage() {
                         <RefreshCw className="w-4 h-4" /> Regerar
                       </button>
                     </div>
-                    <p className="text-xs text-gray-500 text-center">Dica: use esta foto no seu currículo Elite CV ↑</p>
+                    <p className="text-xs text-gray-500 text-center">Dica: use esta foto no seu portfólio PitchFólio ↑</p>
                   </motion.div>
                 ) : (
                   <motion.div key="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }}

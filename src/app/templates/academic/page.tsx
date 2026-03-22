@@ -4,36 +4,36 @@ import { AcademicTemplate } from "@/components/templates/AcademicTemplate";
 import { loadDraft } from '@/lib/pitchStore';
 
 const mockAcademicData = {
-  title: "Orquestração Genérica de Agentes Autônomos",
-  subtitle: "O Impacto da Inteligência Artificial Agêntica na Redução da Sobrecarga Cognitiva Humana em Processos Operacionais Complexos",
-  author: "Saulo Zabot Luciano",
-  institution: "INSTITUTO DE TECNOLOGIA ELITE",
-  department: "Centro de Desenvolvimento de Inteligência Artificial",
-  advisor: "Dr. DeepMind Silver",
-  abstract: "Esta pesquisa investiga os limites da automação através de agentes IA cooperativos. Propondo um modelo de orquestração descentralizada, o estudo demonstra como a substituição de fluxos rígidos por decisões orientadas a objetivos pode elevar a produtividade industrial em até 400%, redefinindo a relação entre criatividade humana e execução algorítmica.",
-  year: 2026,
+  title: "Impacto da Computação Quântica em Algoritmos de Criptografia Assimétrica",
+  subtitle: "Uma Análise Comparativa dos Protocolos Pós-Quânticos CRYSTALS-Kyber e NTRU em Ambientes de Nuvem Distribuída",
+  author: "Dra. Beatriz Sousa Ferreira",
+  institution: "UNIVERSIDADE FEDERAL DE MINAS GERAIS",
+  department: "Departamento de Ciência da Computação — Programa de Pós-Graduação em Segurança Digital",
+  advisor: "Prof. Dr. Marcelo Antunes Vieira",
+  abstract: "Esta pesquisa investiga a vulnerabilidade dos sistemas de criptografia RSA e ECC frente ao advento da computação quântica de escala prática. Através de simulações com emuladores quânticos Qiskit e benchmarks em infraestrutura de nuvem híbrida, o estudo propõe uma arquitetura de migração gradual para protocolos pós-quânticos que mantém compatibilidade retroativa com sistemas legados, reduzindo o custo de transição estimado em 63%.",
+  year: 2025,
   chapters: [
     {
-      title: "Fundamentos da IA Agêntica",
-      content: "O advento dos Large Language Models trouxe a possibilidade de criar entidades que não apenas processam texto, mas planejam e executam tarefas. Este capítulo explora a evolução do GPT-4 para o Gemini 1.5 Pro e como a arquitetura de ferramentas (tool calling) permitiu o nascimento dos agentes.",
-      keywords: ["LLM", "Autonomia", "Tool Calling", "Gemini"]
+      title: "Fundamentos da Ameaça Quântica",
+      content: "O algoritmo de Shor, quando executado em hardware quântico com suficiente número de qubits estáveis, é capaz de fatorar números inteiros em tempo polinomial — comprometendo diretamente a segurança de sistemas RSA-2048 e acima. Este capítulo contextualiza o estado atual do desenvolvimento de processadores quânticos e os horizontes reais da ameaça.",
+      keywords: ["Algoritmo de Shor", "RSA", "Qubits", "Ameaça Quântica"]
     },
     {
-      title: "Arquitetura de Orquestração",
-      content: "Proposta de um motor de decisão centralizado que distribui sub-tarefas para agentes especializados. O modelo foca em 'auto-correção' e 'verificação de qualidade' em tempo real, garantindo que a saída final seja extraordinária.",
-      keywords: ["Microserviços", "Orquestração", "Agentes Especializados"]
+      title: "Protocolos Pós-Quânticos: Estado da Arte",
+      content: "Análise detalhada dos finalistas do processo de padronização do NIST para criptografia pós-quântica: CRYSTALS-Kyber (KEM), CRYSTALS-Dilithium (assinaturas) e SPHINCS+. O capítulo avalia desempenho, tamanho de chave e custo computacional em comparação com protocolos clássicos.",
+      keywords: ["CRYSTALS-Kyber", "NIST PQC", "Lattice Cryptography", "KEM"]
     },
     {
-      title: "Resultados e Impacto",
-      content: "Análise de estudos de caso aplicados em ambientes de desenvolvimento ágil. O uso de agentes reduziu o tempo médio de deploy de 2 horas para 45 segundos, eliminando erros humanos em 99,8% das iterações testadas.",
-      keywords: ["Escalabilidade", "ROI de Automação", "Eficiência"]
+      title: "Proposta de Arquitetura de Migração Híbrida",
+      content: "Apresentação do framework MigraCrypt, capaz de operar em modo duplo (clássico + pós-quântico) durante o período de transição. Resultados em ambiente de produção demonstram overhead de latência inferior a 8ms em operações TLS 1.3, viabilizando adoção imediata em sistemas bancários e de saúde.",
+      keywords: ["Migração Híbrida", "TLS 1.3", "MigraCrypt", "Compatibilidade"]
     }
   ],
   references: [
-    "Silver, D. et al. (2025). Mastering General Agency in LLMs.",
-    "Zabot, S. (2024). O Fim do Código Manual: A Ascensão do Copiloto Total.",
-    "Vercel, N. J. (2026). The Future of UI: Generative Components.",
-    "OpenAI Team (2024). Reasoning and Planning in Autonomous Agents."
+    "Shor, P.W. (1994). Algorithms for Quantum Computation: Discrete Logarithms and Factoring. FOCS.",
+    "NIST (2022). Post-Quantum Cryptography Standardization — Final Report.",
+    "Ferreira, B.S. & Vieira, M.A. (2024). MigraCrypt: Hybrid Transition Framework for PQC Adoption.",
+    "Bernstein, D.J. & Lange, T. (2017). Post-quantum Cryptography. Nature."
   ]
 };
 

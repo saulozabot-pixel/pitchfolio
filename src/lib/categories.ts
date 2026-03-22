@@ -22,7 +22,7 @@ export const CATEGORIES: CategoryConfig[] = [
   },
   {
     id: 'book',
-    label: 'Publishing Elite',
+    label: 'Publishing',
     description: 'Generate extraordinary book covers and interactive digital flipbooks.',
     premium: true,
   },

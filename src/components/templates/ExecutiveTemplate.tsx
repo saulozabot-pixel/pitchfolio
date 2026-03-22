@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { User, Briefcase, GraduationCap, Trophy, Mail, Phone, MapPin, Globe, Play, Sparkles } from 'lucide-react';
+import { User, Briefcase, GraduationCap, Trophy, Mail, Phone, MapPin, Globe, Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ExecutiveTemplateProps {
@@ -37,7 +38,7 @@ export function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
           className="relative z-10 max-w-5xl"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-[10px] uppercase font-bold tracking-[0.3em] mb-6">
-            <Sparkles className="w-3 h-3" />
+            <span className="w-2 h-2 rounded-full bg-amber-500 inline-block" />
             Executive Profile 2026
           </div>
           <h1 className="text-8xl font-black font-outfit leading-none mb-4 tracking-tighter">
@@ -155,11 +156,8 @@ export function ExecutiveTemplate({ data }: ExecutiveTemplateProps) {
 
       {/* Extraordinary Footer */}
       <footer className="py-20 text-center border-t border-white/5">
-        <div className="flex items-center justify-center gap-3 mb-4 opacity-30">
-          <div className="w-8 h-8 premium-gradient rounded-lg flex items-center justify-center">
-            <Sparkles className="text-white w-4 h-4" />
-          </div>
-          <span className="text-xs font-bold tracking-widest uppercase">Elite CV AI</span>
+        <div className="flex items-center justify-center mb-4 opacity-40">
+          <Image src="/pitchfolio-logo.png" alt="PitchFólio" width={120} height={28} />
         </div>
         <p className="text-zinc-600 text-[10px] uppercase tracking-widest">
           Transformed by Professional Intelligence &bull; 2026

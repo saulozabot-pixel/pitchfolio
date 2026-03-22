@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Sparkles, Palette, Zap, Heart, Camera, Music, Instagram, Twitter, Mail, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
+import { Palette, Zap, Heart, Camera, Music, Instagram, Twitter, Mail, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface SpectrumTemplateProps {
@@ -135,11 +136,8 @@ export function SpectrumTemplate({ data }: SpectrumTemplateProps) {
 
       {/* Extraordinary Footer */}
       <footer className="py-20 border-t border-white/5 px-8 flex flex-col md:flex-row justify-between items-center gap-8">
-         <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-2xl bg-[var(--primary)] flex items-center justify-center rotate-12 shadow-2xl">
-                <Sparkles className="text-black w-6 h-6" />
-            </div>
-            <span className="font-outfit font-black uppercase tracking-[0.5em] text-sm">Elite Creator AI</span>
+         <div className="opacity-50">
+            <Image src="/pitchfolio-logo.png" alt="PitchFólio" width={120} height={28} />
          </div>
          <p className="text-zinc-600 text-[10px] uppercase font-black tracking-widest text-center md:text-right">
             Expression Without Limits &bull; Spectrum Edition 2026 <br />

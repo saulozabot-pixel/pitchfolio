@@ -1,7 +1,8 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Sparkles, Terminal, Rocket, Users, ShieldCheck, Github, Linkedin, Mail, Cpu, Globe } from 'lucide-react';
+import { Terminal, Rocket, Users, ShieldCheck, Github, Linkedin, Mail, Cpu, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface PioneerTemplateProps {
@@ -168,9 +169,8 @@ export function PioneerTemplate({ data }: PioneerTemplateProps) {
 
       {/* Extraordinary Footer */}
       <footer className="py-32 text-center bg-black/40 border-t border-white/5">
-         <div className="flex items-center justify-center gap-2 mb-4">
-            <Sparkles className="text-emerald-500 w-5 h-5" />
-            <span className="text-xs font-bold tracking-[0.5em] uppercase text-white">Elite CV Engine</span>
+         <div className="flex items-center justify-center mb-4 opacity-50">
+            <Image src="/pitchfolio-logo.png" alt="PitchFólio" width={120} height={28} />
          </div>
          <p className="text-slate-600 text-[10px] uppercase font-black">
             Technical Leadership Edition &bull; High-Density Achievement Framework

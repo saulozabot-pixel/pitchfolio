@@ -62,7 +62,7 @@ export default function SettingsPage() {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem('elite_cv_settings');
+      const stored = localStorage.getItem('pitchfolio_settings');
       if (stored) setSettings({ ...defaultSettings, ...JSON.parse(stored) });
     } catch {}
   }, []);
@@ -70,14 +70,14 @@ export default function SettingsPage() {
   function update<K extends keyof SettingsState>(key: K, value: SettingsState[K]) {
     setSettings(prev => {
       const next = { ...prev, [key]: value };
-      try { localStorage.setItem('elite_cv_settings', JSON.stringify(next)); } catch {}
+      try { localStorage.setItem('pitchfolio_settings', JSON.stringify(next)); } catch {}
       return next;
     });
     setSaved(false);
   }
 
   function save() {
-    try { localStorage.setItem('elite_cv_settings', JSON.stringify(settings)); } catch {}
+    try { localStorage.setItem('pitchfolio_settings', JSON.stringify(settings)); } catch {}
     setSaved(true);
     setTimeout(() => setSaved(false), 2500);
   }

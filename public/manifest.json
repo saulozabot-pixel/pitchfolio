@@ -1,0 +1,52 @@
+{
+  "name": "PitchFólio — Portfólio com IA",
+  "short_name": "PitchFólio",
+  "description": "Transforme seu currículo em um portfólio digital de impacto com IA.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f8fafc",
+  "theme_color": "#06b6d4",
+  "lang": "pt-BR",
+  "categories": ["productivity", "business", "utilities"],
+  "icons": [
+    {
+      "src": "/pitchfolio-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pitchfolio-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/pitchfolio-logo.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "PitchFólio — Dashboard"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Transformer",
+      "short_name": "Transformar",
+      "description": "Transforme seu CV com IA",
+      "url": "/transform",
+      "icons": [{ "src": "/pitchfolio-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Templates",
+      "short_name": "Templates",
+      "description": "Escolha um template",
+      "url": "/templates",
+      "icons": [{ "src": "/pitchfolio-icon.png", "sizes": "96x96" }]
+    }
+  ],
+  "prefer_related_applications": false
+}

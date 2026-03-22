@@ -3,26 +3,26 @@ import { FileText, Video, Share2, ArrowRight, Zap } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="p-8 max-w-6xl mx-auto space-y-10">
+    <div className="p-4 md:p-8 max-w-6xl mx-auto space-y-6 md:space-y-10">
 
       {/* Hero */}
-      <section className="relative overflow-hidden rounded-3xl bg-white border border-slate-200 shadow-sm p-10 md:p-14">
+      <section className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-white border border-slate-200 shadow-sm p-6 md:p-14">
         {/* Background accent */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
           <div className="absolute -top-24 -right-24 w-72 h-72 bg-cyan-400/10 rounded-full blur-3xl" />
           <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-fuchsia-400/10 rounded-full blur-3xl" />
         </div>
 
-        <div className="relative max-w-2xl space-y-6">
+        <div className="relative max-w-2xl space-y-4 md:space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-600 text-xs font-bold uppercase tracking-wide">
             <Zap className="w-3.5 h-3.5" />
             IA Powered — Portfólio ao Vivo
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-black font-outfit text-slate-900 leading-[1.05] tracking-tight">
+          <h1 className="text-4xl md:text-6xl font-black font-outfit text-slate-900 leading-[1.1] tracking-tight">
             Pare de mandar<br />
-            <span className="pitch-gradient-text">currículo</span>
-            <span className="text-slate-400 text-lg md:text-xl font-medium ml-2 tracking-normal whitespace-nowrap">em pdf, word ou impresso...</span>
+            <span className="pitch-gradient-text">currículo</span><br className="md:hidden" />
+            <span className="text-slate-400 text-base md:text-xl font-medium md:ml-2 tracking-normal">em pdf, word ou impresso...</span>
           </h1>
 
           <p className="text-slate-500 text-lg leading-relaxed max-w-xl">

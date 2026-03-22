@@ -9,7 +9,7 @@ const mockEventData = {
     name: "Pixel Tower Sanctuary",
     address: "Av. Faria Lima, 4500 - São Paulo, SP",
   },
-  description: "Não é apenas um lançamento. É o início de uma nova civilização digital. Junte-se a Saulo Zabot para uma noite imersiva onde a Inteligência Artificial deixa de ser uma ferramenta para se tornar uma aliada consciente.",
+  description: "Não é apenas um lançamento. É o início de uma nova era criativa. Uma noite imersiva onde mentes visionárias se encontram para celebrar o futuro — com arte, tecnologia e conexões que transformam.",
   rsvpDeadline: "10 de Julho",
   theme: {
     primaryColor: "#c4b5fd", // Soft Violet

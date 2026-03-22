@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Globe, Briefcase, GraduationCap, Star } from 'lucide-react';
 
@@ -164,6 +165,15 @@ export function RoseTemplate({ data }: RoseTemplateProps) {
           </div>
         </motion.aside>
       </main>
+
+      <footer style={{ borderTop: '1px solid #EDE8E6', padding: '32px 16px', textAlign: 'center', background: '#FAF8F7' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10, opacity: 0.35 }}>
+          <Image src="/pitchfolio-logo.png" alt="PitchFólio" width={110} height={26} />
+        </div>
+        <p style={{ fontSize: 10, color: greyMid, textTransform: 'uppercase', letterSpacing: '0.2em', fontWeight: 700, margin: 0 }}>
+          Rose &amp; Grey Edition &bull; 2026
+        </p>
+      </footer>
     </div>
   );
 }

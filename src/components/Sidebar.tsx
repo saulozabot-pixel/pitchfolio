@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { LayoutDashboard, Sparkles, FileText, Video, Share2, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -17,6 +17,7 @@ const menuItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
 
   function isActive(href: string) {
     if (href === '/') return pathname === '/';
@@ -77,6 +78,7 @@ export function Sidebar() {
           <p className="text-xs text-slate-500 mb-3 font-medium">Pronto para ir ao ar?</p>
           <button
             type="button"
+            onClick={() => router.push('/growth')}
             className="w-full py-2.5 px-4 rounded-xl pitch-gradient text-white font-bold text-sm hover:opacity-90 hover:scale-105 transition-all duration-200 shadow-md shadow-cyan-200"
           >
             Publicar Agora

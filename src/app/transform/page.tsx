@@ -188,7 +188,7 @@ export default function TransformPage() {
       {/* Sugestões */}
       {messages.length === 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-          <PromptSuggestion icon={Briefcase}     title="Carreira"   text="CV básico → perfil de Elite."           onClick={() => setPrompt('Aqui estão meus dados profissionais para transformação em CV de Elite: ')} />
+          <PromptSuggestion icon={Briefcase}     title="Carreira"   text="CV básico → perfil PitchFólio."           onClick={() => setPrompt('Aqui estão meus dados profissionais para transformação: ')} />
           <PromptSuggestion icon={GraduationCap} title="Acadêmico"  text="Tese ou paper → nível Masterpiece."     onClick={() => setPrompt('Aqui está o resumo do meu trabalho acadêmico: ')} />
           <PromptSuggestion icon={Trophy}        title="Livro"      text="Capa épica e sinopse impactante."       onClick={() => setPrompt('Tenho uma ideia de livro. Detalhes para a capa: ')} />
           <PromptSuggestion icon={Sparkles}      title="Evento"     text="Convite extraordinário para seu evento." onClick={() => setPrompt('Vou realizar um evento. Detalhes para o convite: ')} />

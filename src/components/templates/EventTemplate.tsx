@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, Clock, Sparkles, Send, GlassWater, Music, Gift } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -139,12 +140,11 @@ export function EventTemplate({ data }: EventTemplateProps) {
 
       {/* Invitation Footer */}
       <footer className="py-32 border-t border-white/5 text-center">
-         <div className="flex items-center justify-center gap-3 mb-4">
-            <Sparkles className="w-5 h-5" style={{ color: data.theme.primaryColor }} />
-            <span className="font-outfit font-black uppercase tracking-[0.6em] text-xs">Elite Experience Engine</span>
+         <div className="flex items-center justify-center mb-4 opacity-50">
+            <Image src="/pitchfolio-logo.png" alt="PitchFólio" width={120} height={28} />
          </div>
          <p className="text-zinc-700 text-[10px] font-black uppercase">
-            Designed for the extraordinary &bull; Powered by Elite Creator AI
+            Designed for the extraordinary &bull; 2026
          </p>
       </footer>
     </div>

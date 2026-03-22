@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { User, Briefcase, GraduationCap, Trophy, Mail, Phone, MapPin, Sparkles, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -144,8 +145,11 @@ export function HarmonyTemplate({ data }: HarmonyTemplateProps) {
       </main>
 
       <footer className="bg-white border-t-2 border-zinc-100 py-12 text-center">
+         <div className="flex items-center justify-center mb-3 opacity-40">
+            <Image src="/pitchfolio-logo.png" alt="PitchFólio" width={110} height={26} />
+         </div>
          <p className="text-zinc-400 font-bold uppercase tracking-widest text-xs">
-            Powered by Elite CV AI &bull; Inclusão Sem Limites
+            Inclusão Sem Limites &bull; 2026
          </p>
       </footer>
     </div>
