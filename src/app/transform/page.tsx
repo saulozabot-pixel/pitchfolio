@@ -196,7 +196,7 @@ export default function TransformPage() {
       )}
 
       {/* Mensagens */}
-      <div className="space-y-4 pb-36">
+      <div className="space-y-4 pb-48 md:pb-36">
         {messages.map((m, i) => (
           <div key={i} className={cn(
             "flex gap-4 p-6 rounded-2xl border",
@@ -259,7 +259,7 @@ export default function TransformPage() {
       </div>
 
       {/* Input fixo */}
-      <div className="fixed bottom-[calc(4rem+env(safe-area-inset-bottom)+0.5rem)] md:bottom-6 left-1/2 -translate-x-1/2 w-full max-w-3xl px-4 z-40">
+      <div className="chat-input-bar fixed left-1/2 -translate-x-1/2 w-full max-w-3xl px-4 z-40">
         <div className="bg-white rounded-2xl p-2.5 border border-slate-200 shadow-xl shadow-slate-200/60">
           {/* Preview de imagem colada */}
           {pendingImage && (

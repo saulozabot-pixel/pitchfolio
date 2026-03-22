@@ -77,3 +77,13 @@
 .main-content {
   padding-bottom: max(5rem, calc(4rem + env(safe-area-inset-bottom)));
 }
+
+/* Input fixo acima da bottom nav no mobile */
+.chat-input-bar {
+  bottom: max(4.5rem, calc(4rem + env(safe-area-inset-bottom) + 0.5rem));
+}
+@media (min-width: 768px) {
+  .chat-input-bar {
+    bottom: 1.5rem;
+  }
+}
