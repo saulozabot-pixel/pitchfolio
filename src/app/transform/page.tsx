@@ -174,8 +174,8 @@ export default function TransformPage() {
     <div className="min-h-screen p-6 max-w-4xl mx-auto space-y-6" onPaste={handlePaste}>
       {/* Header */}
       <div className="flex flex-col items-center text-center space-y-3 mb-8 pt-4">
-        <div className="w-16 h-16 pitch-gradient rounded-2xl flex items-center justify-center shadow-lg shadow-cyan-200">
-          <Sparkles className="text-white w-8 h-8" />
+        <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-lg shadow-cyan-200 relative">
+          <img src="/pitchfolio-icon.png" alt="PitchFólio" className="w-full h-full object-contain" />
         </div>
         <h1 className="text-4xl font-black font-outfit text-slate-900 tracking-tight">
           Pitch<span className="pitch-gradient-text">Fólio</span> Transformer
