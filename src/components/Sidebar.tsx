@@ -26,27 +26,15 @@ export function Sidebar() {
   return (
     <aside className="w-64 h-screen bg-white border-r border-slate-200 p-5 flex flex-col hidden md:flex shrink-0">
       {/* Logo */}
-      <Link href="/" className="flex items-center gap-3 mb-10 px-2 group">
-        <div className="w-9 h-9 relative shrink-0">
+      <Link href="/" className="flex items-center mb-10 px-1">
+        <div className="relative h-14 w-full">
           <Image
             src="/pitchfolio-logo.png"
             alt="PitchFólio"
             fill
-            className="object-contain"
-            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            className="object-contain object-left"
+            priority
           />
-          {/* Fallback icon if logo not found */}
-          <div className="w-9 h-9 pitch-gradient rounded-xl flex items-center justify-center absolute inset-0 opacity-0 group-has-[img[style*='none']]:opacity-100">
-            <Sparkles className="text-white w-5 h-5" />
-          </div>
-        </div>
-        <div>
-          <p className="text-[17px] font-black tracking-tight text-slate-900 leading-none">
-            Pitch<span className="pitch-gradient-text">Fólio</span>
-          </p>
-          <p className="text-[9px] uppercase tracking-[0.18em] text-slate-400 font-semibold mt-0.5">
-            Seu Portfólio ao Vivo
-          </p>
         </div>
       </Link>
 
