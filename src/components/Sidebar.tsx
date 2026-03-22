@@ -26,8 +26,8 @@ export function Sidebar() {
   return (
     <aside className="w-64 h-screen bg-white border-r border-slate-200 p-5 flex flex-col hidden md:flex shrink-0">
       {/* Logo */}
-      <Link href="/" className="flex justify-center mb-8">
-        <div className="relative w-48 h-28">
+      <Link href="/" className="flex justify-center mb-6 -mx-5">
+        <div className="relative w-full h-44">
           <Image
             src="/pitchfolio-logo.png"
             alt="PitchFólio"
