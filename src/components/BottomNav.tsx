@@ -3,15 +3,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Home, Wand2, LayoutTemplate, TrendingUp, Settings } from 'lucide-react';
+import { Home, Wand2, LayoutTemplate, TrendingUp, CreditCard } from 'lucide-react';
 import { UserButton, SignInButton, useUser } from '@clerk/nextjs';
 
 const NAV_ITEMS = [
-  { icon: Home,           label: 'Início',      href: '/' },
+  { icon: Home,           label: 'In\u00edcio',     href: '/' },
   { icon: Wand2,          label: 'Transformer', href: '/transform' },
   { icon: LayoutTemplate, label: 'Templates',   href: '/templates' },
+  { icon: CreditCard,     label: 'Cart\u00e3o',    href: '/card' },
   { icon: TrendingUp,     label: 'Growth',      href: '/growth' },
-  { icon: Settings,       label: 'Config',      href: '/settings' },
 ];
 
 export function BottomNav() {
@@ -29,10 +29,10 @@ export function BottomNav() {
       <header className="md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 h-14 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
         <Link href="/" className="flex items-center gap-2">
           <div className="relative w-8 h-8">
-            <Image src="/pitchfolio-icon.png" alt="PitchFólio" fill className="object-contain" priority />
+            <Image src="/pitchfolio-icon.png" alt="PitchF\u00f3lio" fill className="object-contain" priority />
           </div>
           <span className="font-black text-base tracking-tight">
-            Pitch<span style={{ background: 'linear-gradient(135deg, #06b6d4, #a855f7, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Fólio</span>
+            Pitch<span style={{ background: 'linear-gradient(135deg, #06b6d4, #a855f7, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>F\u00f3lio</span>
           </span>
         </Link>
         {/* Auth slot */}

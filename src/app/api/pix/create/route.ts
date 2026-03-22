@@ -7,6 +7,7 @@ const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://pitchfolio-ai.vercel
 
 const PLAN_VALUES: Record<string, Record<string, number>> = {
   link:      { unico: 799 },
+  card:      { unico: 4990 },
   premium:   { mensal: 2990, semestral: 17940, anual: 23880 },
   ilimitado: { mensal: 5990, semestral: 35940, anual: 47880 },
 };

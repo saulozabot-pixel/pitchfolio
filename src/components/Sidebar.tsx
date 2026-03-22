@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, Sparkles, FileText, Video, Share2, Settings } from 'lucide-react';
+import { LayoutDashboard, Sparkles, FileText, Video, Share2, CreditCard, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const menuItems = [
@@ -11,6 +11,7 @@ const menuItems = [
   { icon: Sparkles,        label: 'Transformer',  href: '/transform' },
   { icon: FileText,        label: 'Templates',    href: '/templates' },
   { icon: Video,           label: 'Media Pitch',  href: '/media' },
+  { icon: CreditCard,      label: 'Cart\u00e3o Digital', href: '/card' },
   { icon: Share2,          label: 'Viral Growth', href: '/growth' },
   { icon: Settings,        label: 'Settings',     href: '/settings' },
 ];

@@ -41,7 +41,16 @@ export async function POST(req: NextRequest) {
       const plan = payment?.plan ?? parts[1]?.toLowerCase() ?? 'premium';
       const period = payment?.period ?? parts[2]?.toLowerCase() ?? 'mensal';
 
-      await activatePlan(external_reference, plan, period, payment?.user_id);
+      // Planos avulsos (card, link) não alteram subscription — apenas marcam pagamento
+      if (plan !== 'card') {
+        await activatePlan(external_reference, plan, period, payment?.user_id);
+      } else {
+        // Cartão digital: marca pix_payment como pago
+        await supabaseAdmin
+          .from('pix_payments')
+          .update({ status: 'paid', paid_at: new Date().toISOString() })
+          .eq('reference', external_reference);
+      }
 
       // Salva webhook raw
       await supabaseAdmin

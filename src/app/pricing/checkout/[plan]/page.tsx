@@ -7,6 +7,7 @@ import { Copy, CheckCircle, Clock, Loader2, MessageCircle, ArrowLeft } from 'luc
 
 const PLAN_LABELS: Record<string, string> = {
   link: 'Link Personalizado',
+  card: 'Cartão Digital Premium',
   premium: 'Premium',
   ilimitado: 'Ilimitado',
 };
@@ -66,7 +67,13 @@ export default function CheckoutPage() {
       const data = await res.json();
       if (data.paid) {
         setPaid(true);
-        setTimeout(() => router.push('/'), 3000);
+        // Cartão digital: marca no localStorage e redireciona para /card
+        if (plan === 'card') {
+          try { localStorage.setItem('pitchfolio_card_paid', '1'); } catch {}
+          setTimeout(() => router.push('/card'), 3000);
+        } else {
+          setTimeout(() => router.push('/'), 3000);
+        }
       }
     } finally {
       setPolling(false);
