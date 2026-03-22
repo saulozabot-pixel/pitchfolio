@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { ExecutiveTemplate } from "@/components/templates/ExecutiveTemplate";
-import { loadDraft, type CVData } from '@/lib/pitchStore';
+import { loadDraft } from '@/lib/pitchStore';
 
-const mockData: CVData = {
+const mockData = {
   fullName: "Saulo Zabot Luciano",
   role: "Diretor de Operações & Especialista em Automação IA",
   description: "Estrategista focado em orquestrar ecossistemas tecnológicos para escala exponencial. Especialista em transformar automações complexas em ativos lucrativos de alta performance, unindo inteligência artificial a processos operacionais de elite.",
@@ -50,17 +50,18 @@ const mockData: CVData = {
 };
 
 export default function ExecutivePreview() {
-  const [data, setData] = useState<CVData>(mockData);
+  const [data, setData] = useState(mockData);
 
   useEffect(() => {
     const draft = loadDraft();
     if (draft) setData({
       ...mockData,
       ...draft,
-      email: draft.email || mockData.email,
-      phone: draft.phone || mockData.phone,
-      location: draft.location || mockData.location,
-    });
+      email: draft.email ?? mockData.email,
+      phone: draft.phone ?? mockData.phone,
+      location: draft.location ?? mockData.location,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any);
   }, []);
 
   return <ExecutiveTemplate data={data} />;
