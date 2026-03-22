@@ -1,4 +1,7 @@
+'use client';
+import { useEffect, useState } from 'react';
 import { PublishingTemplate } from "@/components/templates/PublishingTemplate";
+import { loadDraft } from '@/lib/pitchStore';
 
 const mockPublishingData = {
   title: "CÓDIGO DE ELITE",
@@ -20,5 +23,11 @@ const mockPublishingData = {
 };
 
 export default function PublishingPreview() {
-  return <PublishingTemplate data={mockPublishingData} />;
+  const [data, setData] = useState(mockPublishingData);
+  useEffect(() => {
+    const draft = loadDraft();
+    if (!draft) return;
+    setData(prev => ({ ...prev, author: draft.fullName, synopsis: draft.description }));
+  }, []);
+  return <PublishingTemplate data={data} />;
 }

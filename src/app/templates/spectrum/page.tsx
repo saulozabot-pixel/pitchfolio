@@ -1,7 +1,9 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { SpectrumTemplate } from "@/components/templates/SpectrumTemplate";
 import { Instagram, Twitter, Music, Camera, Mail } from 'lucide-react';
+import { loadDraft } from '@/lib/pitchStore';
 
 const mockData = {
   name: "Leo Valente",
@@ -31,5 +33,16 @@ const mockData = {
 };
 
 export default function SpectrumPreview() {
-  return <SpectrumTemplate data={mockData} />;
+  const [data, setData] = useState(mockData);
+  useEffect(() => {
+    const draft = loadDraft();
+    if (!draft) return;
+    setData(prev => ({
+      ...prev,
+      name: draft.fullName,
+      bio: draft.description,
+      manifesto: draft.role,
+    }));
+  }, []);
+  return <SpectrumTemplate data={data} />;
 }

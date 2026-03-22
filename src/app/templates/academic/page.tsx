@@ -1,4 +1,7 @@
+'use client';
+import { useEffect, useState } from 'react';
 import { AcademicTemplate } from "@/components/templates/AcademicTemplate";
+import { loadDraft } from '@/lib/pitchStore';
 
 const mockAcademicData = {
   title: "Orquestração Genérica de Agentes Autônomos",
@@ -35,5 +38,11 @@ const mockAcademicData = {
 };
 
 export default function AcademicPreview() {
-  return <AcademicTemplate data={mockAcademicData} />;
+  const [data, setData] = useState(mockAcademicData);
+  useEffect(() => {
+    const draft = loadDraft();
+    if (!draft) return;
+    setData(prev => ({ ...prev, author: draft.fullName, abstract: draft.description }));
+  }, []);
+  return <AcademicTemplate data={data} />;
 }
