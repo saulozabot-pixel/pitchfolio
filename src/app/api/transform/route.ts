@@ -34,7 +34,7 @@ Transforme e retorne a versão extraordinária.`;
 
   try {
     const { text } = await generateText({
-      model: google('gemini-2.0-flash'),
+      model: google('gemini-2.5-flash'),
       system: systemPrompt,
       messages,
     });
