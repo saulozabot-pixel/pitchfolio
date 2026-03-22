@@ -31,9 +31,23 @@ export default function TransformPage() {
       fd.append('file', file);
       const res = await fetch('/api/extract-pdf', { method: 'POST', body: fd });
       const data = await res.json();
-      if (data.text) text = text ? text + '\n\n' + data.text : data.text;
+      if (data.text) {
+        text = text ? `${text}\n\n${data.text}` : data.text;
+      } else if (!text) {
+        setStreaming(false);
+        setMessages(prev => [...prev, { role: 'assistant', text: '⚠️ Não foi possível extrair o texto do arquivo. Tente copiar e colar o conteúdo diretamente.' }]);
+        setFileName(null);
+        setPendingFile(null);
+        return;
+      }
     } catch {
-      // se falhar extração, usa só o texto digitado
+      if (!text) {
+        setStreaming(false);
+        setMessages(prev => [...prev, { role: 'assistant', text: '⚠️ Erro ao ler o arquivo. Tente copiar e colar o conteúdo diretamente.' }]);
+        setFileName(null);
+        setPendingFile(null);
+        return;
+      }
     }
 
     setStreaming(false);
