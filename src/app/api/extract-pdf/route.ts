@@ -56,7 +56,9 @@ export async function POST(req: NextRequest) {
       const text = pages.join('\n').trim();
       if (text) return NextResponse.json({ text: truncate(text) });
     } catch (e) {
-      console.error('[extract-pdf] pdfjs error:', e);
+      const msg = e instanceof Error ? e.message : String(e);
+      console.error('[extract-pdf] pdfjs error:', msg);
+      return NextResponse.json({ error: 'pdfjs falhou', detail: msg }, { status: 500 });
     }
 
     return NextResponse.json({ error: 'PDF sem texto extraível. Tente salvar como .txt.' }, { status: 422 });
