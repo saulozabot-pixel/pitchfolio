@@ -24,47 +24,55 @@ export async function POST(req: NextRequest) {
 
     // DOCX — usa mammoth
     if (name.endsWith('.docx') || name.endsWith('.doc')) {
-      try {
-        const mammoth = await import('mammoth');
-        const result = await mammoth.extractRawText({ buffer });
-        if (result.value?.trim()) {
-          return NextResponse.json({ text: truncate(result.value) });
-        }
-      } catch (e) {
-        console.error('[extract-pdf] mammoth error:', e);
+      const mammoth = await import('mammoth');
+      const result = await mammoth.extractRawText({ buffer });
+      if (result.value?.trim()) {
+        return NextResponse.json({ text: truncate(result.value) });
       }
-      return NextResponse.json({ error: 'Não foi possível extrair o texto do Word.' }, { status: 422 });
+      return NextResponse.json({ error: 'Word sem texto extraível.' }, { status: 422 });
     }
 
-    // PDF — usa pdfjs-dist legacy (sem worker, sem API externa)
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const pdfjsLib: any = await import('pdfjs-dist/legacy/build/pdf.mjs');
-      const data = new Uint8Array(buffer);
-      const loadingTask = pdfjsLib.getDocument({ data, useWorkerFetch: false, isEvalSupported: false, useSystemFonts: true });
-      const doc = await loadingTask.promise;
-      const pages: string[] = [];
-
-      for (let i = 1; i <= doc.numPages; i++) {
-        const page = await doc.getPage(i);
-        const content = await page.getTextContent();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const pageText = content.items.map((item: any) => item.str ?? '').join(' ');
-        pages.push(pageText);
-      }
-
-      const text = pages.join('\n').trim();
-      if (text) return NextResponse.json({ text: truncate(text) });
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : String(e);
-      console.error('[extract-pdf] pdfjs error:', msg);
-      return NextResponse.json({ error: 'pdfjs falhou', detail: msg }, { status: 500 });
+    // PDF — Gemini REST API
+    const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ error: 'API key não configurada.' }, { status: 500 });
     }
 
-    return NextResponse.json({ error: 'PDF sem texto extraível. Tente salvar como .txt.' }, { status: 422 });
+    const base64 = buffer.toString('base64');
+    const resp = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [
+            { inlineData: { mimeType: 'application/pdf', data: base64 } },
+            { text: 'Extraia todo o texto deste currículo exatamente como está, sem resumir. Retorne apenas o texto puro.' },
+          ]}],
+        }),
+      }
+    );
+
+    if (!resp.ok) {
+      const errBody = await resp.text();
+      console.error('[extract-pdf] Gemini error', resp.status, errBody);
+      return NextResponse.json({
+        error: 'Erro ao processar PDF.',
+        detail: `Gemini ${resp.status}: ${errBody.slice(0, 300)}`,
+      }, { status: 502 });
+    }
+
+    const json = await resp.json();
+    const text = json?.candidates?.[0]?.content?.parts?.[0]?.text as string | undefined;
+
+    if (!text?.trim()) {
+      return NextResponse.json({ error: 'PDF sem texto extraível.' }, { status: 422 });
+    }
+
+    return NextResponse.json({ text: truncate(text) });
 
   } catch (err) {
     console.error('[extract-pdf]', err);
-    return NextResponse.json({ error: 'Falha ao extrair texto.' }, { status: 500 });
+    return NextResponse.json({ error: 'Falha ao extrair texto.', detail: String(err) }, { status: 500 });
   }
 }
